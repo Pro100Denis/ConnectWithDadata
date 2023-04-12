@@ -1,0 +1,41 @@
+﻿@model AddressModel
+@{
+    ViewBag.Error = "Данный параметр отсутствует";
+}
+
+@using(Html.BeginForm("AddressConversion", "Main", FormMethod.Post))
+{
+    <div class="text-field left width03">
+      <label class ="_label" for="firstname">Адрес для исправления</label>
+      <input class="_input width1" type="text" name="address" id="address" placeholder="мск сухонская 11 89">
+      <button class="submit-button" type="submit">Исправить</button>
+    </div>
+    <div class="text-field right " style="width: 65%">
+      <label class ="_label " for="firstname">Примеры адресов</label>
+      <input class="_input width045 left" type="text" value="мск сухонская 11 89" disabled>
+      <input class="_input width045 right" type="text" value="врн хользунова 50 42" disabled>
+      <input class="_input width045 left" type="text" value="елец коммунаров 10 105" disabled>
+      <input class="_input width045 right" type="text" value="спб литейный 35 161" disabled>
+    </div>
+}
+
+
+@if (Model!=null)
+{
+    <div class="container">
+    <label class ="_label " >Адрес</label>
+    <input class="_input width05" type="text" value="@(String.IsNullOrEmpty(Model.result)?ViewBag.Error:Model.result)" disabled>
+    <label class ="_label" >Страна</label>
+    <input class="_input width05" type="text" value="@(String.IsNullOrEmpty(Model.country)?ViewBag.Error:Model.country)" disabled>
+    <label class ="_label" >Федеральный округ</label>
+    <input class="_input width05" type="text" value="@(String.IsNullOrEmpty(Model.federal_district)?ViewBag.Error:Model.federal_district)" disabled>
+    <label class ="_label" >Регион</label>
+    <input class="_input width05" type="text" value="@(String.IsNullOrEmpty(Model.region)?ViewBag.Error:Model.region)" disabled>
+    <label class ="_label" >Район в регионе</label>
+    <input class="_input width05" type="text" value="@(String.IsNullOrEmpty(Model.area)?ViewBag.Error:Model.area)" disabled>
+    <label class ="_label" >Город</label>
+    <input class="_input width05" type="text" value="@(String.IsNullOrEmpty(Model.city)?ViewBag.Error:Model.city)" disabled>
+  </div>
+  <button class="submit-button margin1" onclick="location.href='@Url.Action("Index","Main")'">Закрыть</button>
+
+}
